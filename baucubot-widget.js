@@ -278,7 +278,7 @@
         if (C.hide_header) {
           window.addEventListener('message', function handler(e) {
             if (e.data && e.data.bauCuBotReady) {
-              try { iframe.contentWindow.postMessage({ bauCuBotCmd: 'hideHeader' }, '*'); } catch(err) {}
+              try { e.source.postMessage({ bauCuBotCmd: 'hideHeader' }, '*'); } catch(err) {}
               window.removeEventListener('message', handler);
             }
           });
