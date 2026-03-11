@@ -42,6 +42,7 @@
       greeting   : cfg.greeting   || 'Xin chào Anh/Chị! Tôi có thể hỗ trợ gì ạ?',
       auto_open  : cfg.auto_open   || 'off',
       greet_delay: cfg.greet_delay !== undefined ? cfg.greet_delay : 1,
+      greet_width: cfg.greet_width !== undefined ? cfg.greet_width : 230,
       greet_hide : cfg.greet_hide  !== undefined ? cfg.greet_hide  : 8,
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
       offset_y   : cfg.offset_y   !== undefined ? cfg.offset_y : 24,
@@ -111,7 +112,7 @@
         padding: 10px 14px 10px 16px;
         border-radius: 18px 18px ${isLeft ? '18px 4px' : '4px 18px'};
         box-shadow: 0 4px 20px rgba(0,0,0,0.13);
-        max-width: 230px;
+        max-width: ${C.greet_width}px;
         display: flex; align-items: flex-start; gap: 8px;
         animation: bcb-slideIn .35s cubic-bezier(.22,.68,0,1.3) both;
       }
