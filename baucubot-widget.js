@@ -42,6 +42,7 @@
       greeting   : cfg.greeting   || 'Xin chào Anh/Chị! Tôi có thể hỗ trợ gì ạ?',
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
       offset_y   : cfg.offset_y   !== undefined ? cfg.offset_y : 24,
+      hide_header: cfg.hide_header !== false,
       width      : cfg.width      || 390,
       height     : cfg.height     || 620,
     };
@@ -273,7 +274,7 @@
 
       // Lazy load iframe
       if (!iframe.src) {
-        iframe.src = C.webapp_url;
+        iframe.src = C.webapp_url + (C.hide_header ? '?hideHeader=1' : '');
       }
     }
 
