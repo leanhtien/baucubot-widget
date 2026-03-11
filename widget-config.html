@@ -233,6 +233,21 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       </div>
       <div class="row">
         <div class="row-l">
+          <div class="row-label">🔓 Tự động mở khung chat</div>
+          <div class="row-desc">Mở chat ngay khi vào trang, không cần nhấn icon</div>
+        </div>
+        <div class="row-r">
+          <select id="cfg-auto-open" onchange="onCfgChange()">
+            <option value="off">Tắt (nhấn icon mới mở)</option>
+            <option value="all">Tất cả thiết bị</option>
+            <option value="desktop">Chỉ Desktop</option>
+            <option value="mobile">Chỉ Mobile</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-l">
           <div class="row-label">🙈 Ẩn header ChatUI</div>
           <div class="row-desc">Tắt header bên trong iframe khi widget đã có header riêng</div>
         </div>
@@ -358,6 +373,7 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       width     : cfg.width  || 390,
       height    : cfg.height || 620,
       pulse       : cfg.pulse !== false,
+      auto_open   : cfg.auto_open   || 'off',
       hide_header : cfg.hide_header !== false,
     };
     if (!C.webapp_url) { BCB._ready = false; return; }
@@ -424,6 +440,15 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
     setTimeout(function(){ if(!isOpen&&greet.style.display!=='none'){ greet.style.transition='opacity .4s'; greet.style.opacity='0'; setTimeout(function(){ greet.style.display='none'; },400); } },(C.greet_delay + C.greet_hide)*1000);
     document.addEventListener('click', function(e){ if(isOpen&&!win.contains(e.target)&&!btn.contains(e.target)) closeChat(); });
     BCB.open = openChat; BCB.close = closeChat;
+
+    // Auto-open logic
+    if (C.auto_open !== 'off') {
+      var isMobile = window.innerWidth <= 768;
+      var shouldOpen = (C.auto_open === 'all') ||
+                       (C.auto_open === 'desktop' && !isMobile) ||
+                       (C.auto_open === 'mobile'  && isMobile);
+      if (shouldOpen) setTimeout(openChat, C.greet_delay * 1000 + 300);
+    }
   };
   global.BauCuBot = BCB;
 })(window);
@@ -447,6 +472,7 @@ function getCfg() {
     height    : parseInt(document.getElementById('cfg-h').value)||620,
     logo      : document.getElementById('cfg-logo').value.trim(),
     pulse       : document.getElementById('cfg-pulse').checked,
+    auto_open   : document.getElementById('cfg-auto-open').value,
     hide_header : document.getElementById('cfg-hide-header').checked,
   };
 }
@@ -539,6 +565,7 @@ function updateCode() {
   if (c.width !== 390)  lines.push('    <span class="code-key">width</span>      : <span class="code-val">'+c.width+'</span>,');
   if (c.height !== 620) lines.push('    <span class="code-key">height</span>     : <span class="code-val">'+c.height+'</span>,');
   if (!c.pulse) lines.push('    <span class="code-key">pulse</span>       : <span class="code-val">false</span>,');
+  if (c.auto_open !== 'off') lines.push('    <span class="code-key">auto_open</span>   : <span class="code-str">"'+c.auto_open+'"</span>,');
   if (!c.hide_header) lines.push('    <span class="code-key">hide_header</span> : <span class="code-val">false</span>,');
   lines.push('  });');
   lines.push('<span class="code-tag">&lt;/script&gt;</span>');
@@ -562,6 +589,7 @@ function copyCode() {
   if (c.width !== 390)  code += '    width      : '+c.width+',\n';
   if (c.height !== 620) code += '    height     : '+c.height+',\n';
   if (!c.pulse) code += '    pulse       : false,\n';
+  if (c.auto_open !== 'off') code += '    auto_open   : "'+c.auto_open+'",\n';
   if (!c.hide_header) code += '    hide_header : false,\n';
   code += '  });\n<\/script>';
   navigator.clipboard.writeText(code).then(function(){
