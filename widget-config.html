@@ -161,6 +161,11 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
           <input type="number" id="cfg-greet-width" value="230" min="160" max="400" style="width:70px" oninput="onCfgChange()">
           <span style="font-size:12px;color:var(--muted)">px</span>
           <span style="font-size:11px;color:var(--muted);opacity:.7">(mặc định 230)</span>
+          <span style="font-size:12px;color:var(--muted);margin-left:8px">🔤 Cỡ chữ</span>
+          <input type="number" id="cfg-greet-font" value="14" min="10" max="22" style="width:60px" oninput="onCfgChange()">
+          <span style="font-size:12px;color:var(--muted)">px &nbsp;·&nbsp; 📦 Padding</span>
+          <input type="number" id="cfg-greet-padding" value="10" min="4" max="32" style="width:60px" oninput="onCfgChange()">
+          <span style="font-size:12px;color:var(--muted)">px</span>
         </div>
       </div>
     </div>
@@ -374,6 +379,8 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       greeting    : cfg.greeting     || 'Xin chào! Tôi có thể hỗ trợ gì ạ?',
       greet_delay : cfg.greet_delay !== undefined ? cfg.greet_delay : 1,
       greet_width : cfg.greet_width !== undefined ? cfg.greet_width : 230,
+      greet_font    : cfg.greet_font    !== undefined ? cfg.greet_font    : 14,
+      greet_padding : cfg.greet_padding !== undefined ? cfg.greet_padding : 10,
       greet_hide  : cfg.greet_hide  !== undefined ? cfg.greet_hide  : 8,
       offset_x  : cfg.offset_x !== undefined ? cfg.offset_x : 24,
       offset_y  : cfg.offset_y !== undefined ? cfg.offset_y : 24,
@@ -395,7 +402,7 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       +'#bcb-btn.open .bcb-ico-chat{display:none}'
       +'#bcb-btn.open .bcb-ico-close{display:block}'
       +'#bcb-btn img.bcb-logo{width:38px;height:38px;border-radius:50%;object-fit:cover}'
-      +'#bcb-greet{position:fixed;'+hx+':'+(C.offset_x+70)+'px;bottom:'+(C.offset_y+8)+'px;z-index:2147483645;background:#fff;color:#1a1a2e;font-family:-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.45;padding:10px 14px 10px 16px;border-radius:18px 18px '+(L?'18px 4px':'4px 18px')+';box-shadow:0 4px 20px rgba(0,0,0,.13);max-width:'+C.greet_width+'px;display:flex;align-items:flex-start;gap:8px;animation:bcb-si .35s cubic-bezier(.22,.68,0,1.3) both}'
+      +'#bcb-greet{position:fixed;'+hx+':'+(C.offset_x+70)+'px;bottom:'+(C.offset_y+8)+'px;z-index:2147483645;background:#fff;color:#1a1a2e;font-family:-apple-system,"Segoe UI",sans-serif;font-size:'+C.greet_font+'px;line-height:1.45;padding:'+C.greet_padding+'px '+(C.greet_padding+4)+'px '+C.greet_padding+'px '+(C.greet_padding+6)+'px;border-radius:18px 18px '+(L?'18px 4px':'4px 18px')+';box-shadow:0 4px 20px rgba(0,0,0,.13);max-width:'+C.greet_width+'px;display:flex;align-items:flex-start;gap:8px;animation:bcb-si .35s cubic-bezier(.22,.68,0,1.3) both}'
       +'#bcb-greet span{flex:1}'
       +'#bcb-greet-close{cursor:pointer;opacity:.45;font-size:18px;line-height:1;flex-shrink:0}'
       +'@keyframes bcb-si{from{opacity:0;transform:translateY(8px) scale(.95)}to{opacity:1;transform:none}}'
@@ -471,6 +478,9 @@ function getCfg() {
     greeting      : document.getElementById('cfg-greeting').value,
     greet_delay   : parseInt(document.getElementById('cfg-greet-delay').value)||1,
     greet_width   : parseInt(document.getElementById('cfg-greet-width').value)||230,
+    greet_font    : parseInt(document.getElementById('cfg-greet-font').value)||14,
+    greet_padding : parseInt(document.getElementById('cfg-greet-padding').value)||10,
+    greet_padding : parseInt(document.getElementById('cfg-greet-padding').value)||10,
     greet_hide    : parseInt(document.getElementById('cfg-greet-hide').value)||8,
     color     : cfgState.color,
     position  : cfgState.position,
@@ -562,6 +572,9 @@ function updateCode() {
   lines.push('    <span class="code-key">webapp_url</span> : <span class="code-str">"'+esc(url)+'"</span>,');
   if (c.title !== 'Hỏi đáp Bầu cử 2026') lines.push('    <span class="code-key">title</span>      : <span class="code-str">"'+esc(c.title)+'"</span>,');
   if (c.subtitle !== 'Trợ lý AI · Luôn sẵn sàng') lines.push('    <span class="code-key">subtitle</span>   : <span class="code-str">"'+esc(c.subtitle)+'"</span>,');
+  if (c.greet_padding !== 10) lines.push('    <span class="code-key">greet_padding</span>: <span class="code-val">'+c.greet_padding+'</span>,');
+  if (c.greet_padding !== 10) lines.push('    <span class="code-key">greet_padding</span>: <span class="code-val">'+c.greet_padding+'</span>,');
+  if (c.greet_font !== 14)   lines.push('    <span class="code-key">greet_font</span>  : <span class="code-val">'+c.greet_font+'</span>,');
   if (c.greet_width !== 230) lines.push('    <span class="code-key">greet_width</span> : <span class="code-val">'+c.greet_width+'</span>,');
   if (c.greet_delay !== 1)  lines.push('    <span class="code-key">greet_delay</span> : <span class="code-val">'+c.greet_delay+'</span>,');
   if (c.greet_hide !== 8)   lines.push('    <span class="code-key">greet_hide</span>  : <span class="code-val">'+c.greet_hide+'</span>,');
@@ -587,6 +600,9 @@ function copyCode() {
   code += '    webapp_url : "'+url+'",\n';
   if (c.title !== 'Hỏi đáp Bầu cử 2026') code += '    title      : "'+c.title+'",\n';
   if (c.subtitle !== 'Trợ lý AI · Luôn sẵn sàng') code += '    subtitle   : "'+c.subtitle+'",\n';
+  if (c.greet_padding !== 10) code += '    greet_padding: '+c.greet_padding+',\n';
+  if (c.greet_padding !== 10) code += '    greet_padding: '+c.greet_padding+',\n';
+  if (c.greet_font !== 14)   code += '    greet_font  : '+c.greet_font+',\n';
   if (c.greet_width !== 230) code += '    greet_width : '+c.greet_width+',\n';
   if (c.greet_delay !== 1)  code += '    greet_delay : '+c.greet_delay+',\n';
   if (c.greet_hide !== 8)   code += '    greet_hide  : '+c.greet_hide+',\n';
