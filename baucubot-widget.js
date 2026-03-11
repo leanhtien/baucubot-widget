@@ -40,6 +40,7 @@
       title      : cfg.title      || 'Hỏi đáp Bầu cử 2026',
       subtitle   : cfg.subtitle   || 'Trợ lý AI · Luôn sẵn sàng',
       greeting   : cfg.greeting   || 'Xin chào Anh/Chị! Tôi có thể hỗ trợ gì ạ?',
+      auto_open  : cfg.auto_open   || 'off',
       greet_delay: cfg.greet_delay !== undefined ? cfg.greet_delay : 1,
       greet_hide : cfg.greet_hide  !== undefined ? cfg.greet_hide  : 8,
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
@@ -322,6 +323,15 @@
         closeChat();
       }
     });
+
+    /* ─── Auto-open ─── */
+    if (C.auto_open !== 'off') {
+      var isMobile = window.innerWidth <= 768;
+      var shouldOpen = (C.auto_open === 'all') ||
+                       (C.auto_open === 'desktop' && !isMobile) ||
+                       (C.auto_open === 'mobile'  && isMobile);
+      if (shouldOpen) setTimeout(openChat, C.greet_delay * 1000 + 300);
+    }
 
     /* ─── Expose API ─── */
     BauCuBot.open  = openChat;
