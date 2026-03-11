@@ -274,7 +274,15 @@
 
       // Lazy load iframe
       if (!iframe.src) {
-        iframe.src = C.webapp_url + (C.hide_header ? '#hideHeader' : '');
+        iframe.src = C.webapp_url;
+        if (C.hide_header) {
+          window.addEventListener('message', function handler(e) {
+            if (e.data && e.data.bauCuBotReady) {
+              try { iframe.contentWindow.postMessage({ bauCuBotCmd: 'hideHeader' }, '*'); } catch(err) {}
+              window.removeEventListener('message', handler);
+            }
+          });
+        }
       }
     }
 
