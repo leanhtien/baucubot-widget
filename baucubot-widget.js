@@ -43,6 +43,8 @@
       auto_open  : cfg.auto_open   || 'off',
       greet_delay: cfg.greet_delay !== undefined ? cfg.greet_delay : 1,
       greet_width: cfg.greet_width !== undefined ? cfg.greet_width : 230,
+      greet_font   : cfg.greet_font    !== undefined ? cfg.greet_font    : 14,
+      greet_padding: cfg.greet_padding !== undefined ? cfg.greet_padding : 10,
       greet_hide : cfg.greet_hide  !== undefined ? cfg.greet_hide  : 8,
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
       offset_y   : cfg.offset_y   !== undefined ? cfg.offset_y : 24,
@@ -108,8 +110,8 @@
         background: #fff;
         color: #1a1a2e;
         font-family: -apple-system, 'Segoe UI', sans-serif;
-        font-size: 14px; line-height: 1.45;
-        padding: 10px 14px 10px 16px;
+        font-size: ${C.greet_font}px; line-height: 1.45;
+        padding: ${C.greet_padding}px ${C.greet_padding+4}px ${C.greet_padding}px ${C.greet_padding+6}px;
         border-radius: 18px 18px ${isLeft ? '18px 4px' : '4px 18px'};
         box-shadow: 0 4px 20px rgba(0,0,0,0.13);
         max-width: ${C.greet_width}px;
