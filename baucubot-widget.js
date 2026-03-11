@@ -42,6 +42,8 @@
       greeting   : cfg.greeting   || 'Xin chào Anh/Chị! Tôi có thể hỗ trợ gì ạ?',
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
       offset_y   : cfg.offset_y   !== undefined ? cfg.offset_y : 24,
+      width      : cfg.width      || 390,
+      height     : cfg.height     || 620,
     };
 
     if (!C.webapp_url) {
@@ -127,8 +129,8 @@
         ${hx}: ${C.offset_x}px;
         bottom: ${C.offset_y + 72}px;
         z-index: 2147483647;
-        width: 390px;
-        height: min(620px, calc(100vh - ${C.offset_y + 90}px));
+        width: ${C.width}px;
+        height: min(${C.height}px, calc(100vh - ${C.offset_y + 90}px));
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 12px 48px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.1);
