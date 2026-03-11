@@ -40,6 +40,8 @@
       title      : cfg.title      || 'Hỏi đáp Bầu cử 2026',
       subtitle   : cfg.subtitle   || 'Trợ lý AI · Luôn sẵn sàng',
       greeting   : cfg.greeting   || 'Xin chào Anh/Chị! Tôi có thể hỗ trợ gì ạ?',
+      greet_delay: cfg.greet_delay !== undefined ? cfg.greet_delay : 1,
+      greet_hide : cfg.greet_hide  !== undefined ? cfg.greet_hide  : 8,
       offset_x   : cfg.offset_x   !== undefined ? cfg.offset_x : 24,
       offset_y   : cfg.offset_y   !== undefined ? cfg.offset_y : 24,
       hide_header: cfg.hide_header !== false,
@@ -221,7 +223,9 @@
     const greet = document.createElement('div');
     greet.id = 'bcb-greet';
     greet.innerHTML = `<span>${C.greeting}</span><span id="bcb-greet-close" title="Đóng">×</span>`;
+    greet.style.display = 'none';
     root.appendChild(greet);
+    setTimeout(function() { greet.style.display = 'flex'; }, C.greet_delay * 1000);
 
     /* ─── Floating button ─── */
     const btn = document.createElement('button');
@@ -310,7 +314,7 @@
         greet.style.opacity = '0';
         setTimeout(function () { greet.style.display = 'none'; }, 400);
       }
-    }, 8000);
+    }, (C.greet_delay + C.greet_hide) * 1000);
 
     /* ─── Đóng khi click outside (desktop) ─── */
     document.addEventListener('click', function (e) {
