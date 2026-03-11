@@ -3,959 +3,491 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cấu hình BauCuBot Widget</title>
+<title>BauCuBot — Cấu hình & Trải nghiệm</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --primary: #C8001A;
-  --primary-soft: #fdf0f2;
-  --bg: #f4f6fb;
-  --surface: #ffffff;
-  --border: #e8eaed;
-  --text: #1a1d23;
-  --muted: #6b7280;
-  --radius: 12px;
-  --shadow: 0 1px 4px rgba(0,0,0,.06), 0 4px 20px rgba(0,0,0,.06);
+  --primary: #C8001A; --primary-soft: #fdf0f2;
+  --bg: #f4f6fb; --surface: #fff; --border: #e8eaed;
+  --text: #1a1d23; --muted: #6b7280; --radius: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,.06),0 4px 20px rgba(0,0,0,.06);
 }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); font-size:14px; min-height:100vh; }
 
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 14px;
-}
+.topbar { background:#fff; border-bottom:1px solid var(--border); padding:0 32px; height:58px; display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50; }
+.topbar-logo { width:32px; height:32px; background:var(--primary); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.topbar-title { font-size:16px; font-weight:600; }
+.topbar-sub { color:var(--muted); font-size:13px; }
 
-/* ── HEADER ── */
-.topbar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 32px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.topbar-logo {
-  width: 32px; height: 32px;
-  background: var(--primary);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 16px;
-}
-.topbar-title { font-size: 16px; font-weight: 600; }
-.topbar-sub { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.layout { display:grid; grid-template-columns:1fr 420px; gap:24px; max-width:1200px; margin:0 auto; padding:24px; }
 
-/* ── LAYOUT ── */
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 24px;
-}
+.panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.panel-head { padding:16px 22px 14px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.panel-icon { width:34px; height:34px; border-radius:8px; background:var(--primary-soft); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.panel-head h2 { font-size:15px; font-weight:600; }
+.panel-head p  { font-size:12px; color:var(--muted); margin-top:1px; }
 
-/* ── PANELS ── */
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-.panel-head {
-  padding: 18px 24px 14px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.panel-head-icon {
-  width: 34px; height: 34px;
-  border-radius: 8px;
-  background: var(--primary-soft);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-.panel-head h2 { font-size: 15px; font-weight: 600; }
-.panel-head p  { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.row { display:flex; align-items:center; padding:14px 22px; border-bottom:1px solid var(--border); gap:12px; }
+.row:last-child { border-bottom:none; }
+.row-l { flex:1; min-width:0; }
+.row-label { font-weight:500; font-size:13.5px; }
+.row-desc  { font-size:12px; color:var(--muted); margin-top:2px; line-height:1.4; }
+.row-r { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.full-row { padding:14px 22px; border-bottom:1px solid var(--border); }
+.full-row:last-child { border-bottom:none; }
 
-/* ── ROWS ── */
-.row {
-  display: flex;
-  align-items: center;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-  gap: 16px;
-}
-.row:last-child { border-bottom: none; }
-.row-left { flex: 1; min-width: 0; }
-.row-label {
-  font-weight: 500;
-  font-size: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.row-label svg { color: var(--muted); }
-.row-desc { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-.row-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+input[type=text],input[type=number],select,textarea { border:1.5px solid var(--border); border-radius:8px; padding:7px 11px; font-family:inherit; font-size:13px; color:var(--text); background:#fff; outline:none; transition:border-color .15s; }
+input[type=text]:focus,input[type=number]:focus,select:focus,textarea:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(200,0,26,.08); }
+input[type=text] { width:200px; }
+input[type=number] { width:60px; text-align:center; }
+select { min-width:140px; cursor:pointer; }
+textarea { width:100%; resize:vertical; min-height:56px; margin-top:8px; }
+.px-lbl { font-size:12px; color:var(--muted); }
 
-/* ── INPUTS ── */
-input[type="text"], input[type="number"], select, textarea {
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--text);
-  background: #fff;
-  outline: none;
-  transition: border-color .15s;
-}
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(200,0,26,.08);
-}
-input[type="text"] { width: 220px; }
-input[type="number"] { width: 64px; text-align: center; }
-select { min-width: 160px; cursor: pointer; }
-textarea { width: 100%; margin-top: 10px; resize: vertical; min-height: 60px; }
+.toggle { position:relative; width:42px; height:22px; cursor:pointer; flex-shrink:0; }
+.toggle input { opacity:0; width:0; height:0; }
+.toggle-sl { position:absolute; inset:0; background:#d1d5db; border-radius:22px; transition:background .2s; }
+.toggle-sl::before { content:''; position:absolute; width:16px; height:16px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform .2s; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+.toggle input:checked + .toggle-sl { background:var(--primary); }
+.toggle input:checked + .toggle-sl::before { transform:translateX(20px); }
 
-label.px { font-size: 12px; color: var(--muted); }
+.swatches { display:flex; gap:7px; flex-wrap:wrap; }
+.swatch { width:28px; height:28px; border-radius:50%; cursor:pointer; border:2.5px solid transparent; transition:transform .15s; }
+.swatch:hover { transform:scale(1.15); }
+.swatch.active { border-color:#1a1d23; box-shadow:0 0 0 2px #fff inset; }
+.swatch-custom { width:28px; height:28px; border-radius:50%; border:2px dashed #d1d5db; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px; color:var(--muted); overflow:hidden; position:relative; }
+.swatch-custom input[type=color] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; border:none; padding:0; }
 
-/* ── TOGGLE ── */
-.toggle {
-  position: relative; width: 44px; height: 24px; cursor: pointer; flex-shrink: 0;
-}
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider {
-  position: absolute; inset: 0;
-  background: #d1d5db;
-  border-radius: 24px;
-  transition: background .2s;
-}
-.toggle-slider::before {
-  content: '';
-  position: absolute;
-  width: 18px; height: 18px;
-  left: 3px; top: 3px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform .2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,.2);
-}
-.toggle input:checked + .toggle-slider { background: var(--primary); }
-.toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+.pos-sel { display:flex; gap:6px; }
+.pos-btn { padding:6px 13px; border:1.5px solid var(--border); border-radius:7px; cursor:pointer; font-size:12px; font-weight:500; background:#fff; color:var(--muted); transition:all .15s; font-family:inherit; }
+.pos-btn.active { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
 
-/* ── COLOR SWATCHES ── */
-.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
-.swatch {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2.5px solid transparent;
-  transition: transform .15s, border-color .15s;
-  position: relative;
-}
-.swatch:hover { transform: scale(1.12); }
-.swatch.active {
-  border-color: var(--text);
-  box-shadow: 0 0 0 2px #fff inset;
-}
-.swatch-custom {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: 2px dashed #d1d5db;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  color: var(--muted);
-  transition: border-color .15s;
-  overflow: hidden; position: relative;
-}
-.swatch-custom input[type="color"] {
-  position: absolute; inset: 0;
-  opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  border: none; padding: 0;
-}
+.code-block { background:#1e1e2e; border-radius:10px; padding:16px 18px; font-family:'Fira Code','Courier New',monospace; font-size:12px; color:#cdd6f4; line-height:1.8; white-space:pre; overflow-x:auto; position:relative; margin-top:12px; }
+.code-tag  { color:#89dceb; }
+.code-attr { color:#89b4fa; }
+.code-str  { color:#a6e3a1; }
+.code-key  { color:#cba6f7; }
+.code-val  { color:#fab387; }
+.copy-btn  { position:absolute; top:10px; right:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:#cdd6f4; border-radius:6px; padding:4px 10px; font-size:11px; cursor:pointer; transition:background .15s; font-family:inherit; }
+.copy-btn:hover { background:rgba(255,255,255,.15); }
+.copy-btn.copied { color:#a6e3a1; }
 
-/* ── POSITION ── */
-.pos-select {
-  display: flex; gap: 6px;
-}
-.pos-btn {
-  padding: 6px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  background: #fff;
-  color: var(--muted);
-  transition: all .15s;
-}
-.pos-btn.active {
-  border-color: var(--primary);
-  background: var(--primary-soft);
-  color: var(--primary);
-}
+.right-col { display:flex; flex-direction:column; gap:20px; position:sticky; top:82px; height:fit-content; }
 
-/* ── ICON PICKER ── */
-.icon-picks { display: flex; gap: 8px; }
-.icon-pick {
-  width: 56px; height: 56px;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  font-size: 24px;
-  transition: all .15s;
-  position: relative; overflow: hidden;
-  background: #fafafa;
-}
-.icon-pick:hover { border-color: var(--primary); }
-.icon-pick.active { border-color: var(--primary); background: var(--primary-soft); }
-.icon-pick img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
-.icon-pick-upload {
-  font-size: 13px; color: var(--muted); flex-direction: column;
-  gap: 4px; text-align: center;
-  line-height: 1.2;
-}
-.icon-pick-upload svg { opacity: .5; }
-.icon-pick input[type="file"] {
-  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-}
+.demo-screen { background:linear-gradient(145deg,#1a1d23 0%,#2d3748 100%); min-height:280px; position:relative; display:flex; align-items:center; justify-content:center; padding:24px; }
+.demo-bg { position:absolute; inset:0; background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 40px); }
+.demo-lbl { position:absolute; top:12px; left:16px; font-size:10px; font-weight:700; letter-spacing:2px; color:rgba(255,255,255,.2); text-transform:uppercase; }
+.demo-dots { display:flex; gap:6px; position:absolute; top:14px; right:16px; }
+.demo-dot  { width:10px; height:10px; border-radius:50%; }
 
-/* ── CODE BLOCK ── */
-.code-block {
-  background: #1e1e2e;
-  border-radius: 10px;
-  padding: 18px 20px;
-  font-family: 'Fira Code', 'Courier New', monospace;
-  font-size: 12.5px;
-  color: #cdd6f4;
-  line-height: 1.75;
-  white-space: pre;
-  overflow-x: auto;
-  position: relative;
-  margin-top: 12px;
-}
-.code-tag    { color: #89dceb; }
-.code-attr   { color: #89b4fa; }
-.code-str    { color: #a6e3a1; }
-.code-key    { color: #cba6f7; }
-.code-val    { color: #fab387; }
-.code-cmt    { color: #585b70; font-style: italic; }
+.status-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; padding:8px; }
+.status-icon { font-size:36px; }
+.status-title { font-size:15px; font-weight:600; color:rgba(255,255,255,.9); }
+.status-sub   { font-size:12px; color:rgba(255,255,255,.4); line-height:1.5; }
 
-.copy-btn {
-  position: absolute; top: 12px; right: 12px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  color: #cdd6f4;
-  border-radius: 6px;
-  padding: 5px 12px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background .15s;
-  font-family: inherit;
-}
-.copy-btn:hover { background: rgba(255,255,255,.15); }
-.copy-btn.copied { color: #a6e3a1; }
+.try-btn { background:var(--primary); color:#fff; border:none; cursor:pointer; padding:12px 28px; border-radius:50px; font-size:14px; font-weight:700; font-family:inherit; display:flex; align-items:center; gap:8px; box-shadow:0 4px 20px rgba(200,0,26,.45); transition:transform .15s,box-shadow .15s; animation:try-pulse 2.5s ease-in-out infinite; }
+@keyframes try-pulse { 0%,100%{box-shadow:0 4px 20px rgba(200,0,26,.45),0 0 0 0 rgba(200,0,26,.3)} 50%{box-shadow:0 4px 20px rgba(200,0,26,.45),0 0 0 10px rgba(200,0,26,0)} }
+.try-btn:hover { transform:scale(1.04); animation:none; }
+.try-btn:active { transform:scale(.97); }
+.try-btn.running { background:#22c55e; box-shadow:0 4px 20px rgba(34,197,94,.4); animation:none; }
 
-/* ── PREVIEW PANEL ── */
-.preview-panel {
-  position: sticky;
-  top: 82px;
-  height: fit-content;
-}
-.preview-wrap {
-  padding: 24px;
-  background: linear-gradient(135deg, #e8edf5 0%, #dde3f0 100%);
-  min-height: 340px;
-  border-radius: 0 0 var(--radius) var(--radius);
-  position: relative;
-  overflow: hidden;
-}
-.preview-wrap::before {
-  content: 'PREVIEW';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: rgba(0,0,0,.08);
-}
+.reset-btn { background:rgba(255,255,255,.08); color:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.12); padding:7px 16px; border-radius:8px; cursor:pointer; font-size:12px; font-family:inherit; transition:background .15s; }
+.reset-btn:hover { background:rgba(255,255,255,.14); }
 
-/* ── MOCK BUBBLE ── */
-#mock-btn {
-  position: absolute;
-  bottom: 24px; right: 24px;
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,.2);
-  transition: background .2s;
-  font-size: 24px;
-  animation: preview-pulse 3s ease-in-out infinite;
-}
-@keyframes preview-pulse {
-  0%,100% { box-shadow: 0 4px 16px rgba(0,0,0,.2), 0 0 0 0 currentColor; }
-  50%      { box-shadow: 0 4px 16px rgba(0,0,0,.2), 0 0 0 8px transparent; }
-}
+.url-warn { display:none; font-size:11px; color:#e57200; margin-top:4px; }
+.url-warn.show { display:block; }
 
-#mock-greet {
-  position: absolute;
-  bottom: 30px; right: 90px;
-  background: #fff;
-  border-radius: 14px 14px 4px 14px;
-  padding: 9px 14px;
-  font-size: 13px;
-  box-shadow: 0 3px 14px rgba(0,0,0,.12);
-  max-width: 180px;
-  line-height: 1.4;
-  color: #1a1d23;
-  transition: opacity .3s;
-}
+.step { display:flex; gap:12px; align-items:flex-start; }
+.step-num { width:22px; height:22px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px; }
+.step-title { font-weight:500; font-size:13px; }
+.step-desc  { font-size:12px; color:var(--muted); margin-top:2px; line-height:1.5; }
+code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
 
-/* ── MOCK WINDOW ── */
-#mock-win {
-  position: absolute;
-  bottom: 90px; right: 14px;
-  width: 280px;
-  background: #f5f3ee;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,.18);
-  display: none;
-}
-#mock-win.open { display: block; }
-#mock-win-header {
-  padding: 12px 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.mock-avatar {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.25);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; flex-shrink: 0;
-  overflow: hidden;
-}
-.mock-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.mock-htxt h4 { font-size: 13px; font-weight: 600; color: #fff; }
-.mock-htxt p  { font-size: 11px; color: rgba(255,255,255,.7); display: flex; align-items: center; gap: 4px; }
-.mock-dot { width: 6px; height: 6px; border-radius: 50%; background: #5ef58a; }
-#mock-close { margin-left: auto; background: none; border: none; color: rgba(255,255,255,.7); cursor: pointer; font-size: 18px; }
-#mock-body { background: #f5f3ee; padding: 14px; min-height: 100px; }
-.mock-bubble {
-  background: #fff;
-  border-radius: 12px 12px 12px 4px;
-  padding: 9px 12px;
-  font-size: 12px;
-  color: #333;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
-  max-width: 200px;
-  line-height: 1.4;
-}
-#mock-input {
-  border-top: 1px solid #e8eaed;
-  padding: 10px 12px;
-  background: #fff;
-  display: flex; gap: 8px; align-items: center;
-}
-#mock-input-field {
-  flex: 1; border: 1.5px solid #e0e0e0; border-radius: 20px;
-  padding: 7px 12px; font-size: 12px; outline: none; color: #666;
-  background: #fafafa;
-}
-#mock-send {
-  width: 30px; height: 30px;
-  border-radius: 50%; background: #ccc;
-  border: none; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: background .2s;
-}
-#mock-send svg { fill: #fff; width: 14px; height: 14px; }
-
-/* ── SECTION SEPARATOR ── */
-.section-sep {
-  padding: 10px 24px 0;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  margin-top: 4px;
-  padding-top: 16px;
-}
-
-/* ── SAVE BTN ── */
-.action-bar {
-  display: flex; gap: 10px; padding: 18px 24px;
-  border-top: 1px solid var(--border);
-  background: #fafafa;
-}
-.btn-primary {
-  background: var(--primary);
-  color: #fff; border: none;
-  padding: 9px 20px;
-  border-radius: 8px; cursor: pointer;
-  font-weight: 600; font-size: 13px;
-  font-family: inherit;
-  transition: opacity .15s, transform .1s;
-  display: flex; align-items: center; gap: 7px;
-}
-.btn-primary:hover { opacity: .9; }
-.btn-primary:active { transform: scale(.97); }
-.btn-secondary {
-  background: #fff; color: var(--text);
-  border: 1.5px solid var(--border);
-  padding: 9px 20px;
-  border-radius: 8px; cursor: pointer;
-  font-weight: 500; font-size: 13px;
-  font-family: inherit;
-  transition: background .15s;
-}
-.btn-secondary:hover { background: #f5f5f5; }
-
-/* ── OFFSET INPUTS ── */
-.offset-wrap {
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-}
-.offset-group {
-  display: flex; align-items: center; gap: 4px;
-}
-.offset-lbl { font-size: 12px; color: var(--muted); white-space: nowrap; }
-
-/* ── INLINE TEXTAREA WRAP ── */
-.full-row {
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-}
-.full-row:last-child { border-bottom: none; }
+@media(max-width:900px){ .layout{grid-template-columns:1fr} .right-col{position:static} }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-logo">🗳️</div>
   <div>
-    <span class="topbar-title">BauCuBot</span>
-    <span class="topbar-sub">/ Cấu hình Widget</span>
+    <span class="topbar-title">BauCuBot Widget</span>
+    <span class="topbar-sub"> · Cấu hình & Trải nghiệm</span>
   </div>
 </div>
 
 <div class="layout">
-
-  <!-- LEFT: CONFIG PANELS -->
+  <!-- ══ LEFT ══ -->
   <div style="display:flex;flex-direction:column;gap:20px">
 
-    <!-- ── PANEL 1: Thiết lập cơ bản ── -->
     <div class="panel">
       <div class="panel-head">
-        <div class="panel-head-icon">💬</div>
-        <div>
-          <h2>Thiết lập Chat</h2>
-          <p>Thông tin hiển thị cho người dùng</p>
-        </div>
+        <div class="panel-icon">💬</div>
+        <div><h2>Thiết lập Chat</h2><p>Thông tin hiển thị cho người dùng</p></div>
       </div>
-
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">🔗 Webapp URL</div>
-          <div class="row-desc">Đường dẫn Google Apps Script Web App của bạn</div>
+        <div class="row-l">
+          <div class="row-label">🔗 Webapp URL <span style="color:var(--primary)">*</span></div>
+          <div class="row-desc">Google Apps Script Web App URL</div>
+          <div class="url-warn" id="url-warn">⚠️ Vui lòng nhập URL trước khi trải nghiệm</div>
         </div>
-        <div class="row-right">
-          <input type="text" id="cfg-url" placeholder="https://script.google.com/macros/s/.../exec" style="width:280px">
-        </div>
+        <div class="row-r"><input type="text" id="cfg-url" placeholder="https://script.google.com/..." style="width:240px" oninput="onCfgChange()"></div>
       </div>
-
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">🏷️ Tên hiển thị</div>
-          <div class="row-desc">Tên bot hiện trên header cửa sổ chat</div>
-        </div>
-        <div class="row-right">
-          <input type="text" id="cfg-title" value="Hỏi đáp Bầu cử 2026">
-        </div>
+        <div class="row-l"><div class="row-label">🏷️ Tên hiển thị</div></div>
+        <div class="row-r"><input type="text" id="cfg-title" value="Hỏi đáp Bầu cử 2026" oninput="onCfgChange()"></div>
       </div>
-
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">📝 Phụ đề</div>
-          <div class="row-desc">Dòng trạng thái bên dưới tên</div>
-        </div>
-        <div class="row-right">
-          <input type="text" id="cfg-subtitle" value="Trợ lý AI · Luôn sẵn sàng">
-        </div>
+        <div class="row-l"><div class="row-label">📝 Phụ đề</div></div>
+        <div class="row-r"><input type="text" id="cfg-subtitle" value="Trợ lý AI · Luôn sẵn sàng" oninput="onCfgChange()"></div>
       </div>
-
       <div class="full-row">
-        <div class="row-label" style="margin-bottom:4px">💬 Tin nhắn chào mừng</div>
-        <div class="row-desc">Hiện lên khi người dùng vào trang (bubble nhỏ)</div>
-        <textarea id="cfg-greeting">Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?</textarea>
+        <div class="row-label">💬 Tin nhắn chào mừng</div>
+        <div class="row-desc" style="margin-top:2px">Bubble nhỏ xuất hiện khi người dùng vào trang</div>
+        <textarea id="cfg-greeting" oninput="onCfgChange()">Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?</textarea>
       </div>
     </div>
 
-    <!-- ── PANEL 2: Giao diện ── -->
     <div class="panel">
       <div class="panel-head">
-        <div class="panel-head-icon">🎨</div>
-        <div>
-          <h2>Thiết lập giao diện</h2>
-          <p>Tuỳ chỉnh màu sắc, vị trí và biểu tượng</p>
-        </div>
+        <div class="panel-icon">🎨</div>
+        <div><h2>Thiết lập giao diện</h2><p>Màu sắc, vị trí, biểu tượng</p></div>
       </div>
-
-      <!-- Vị trí -->
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">📍 Vị trí hiển thị</div>
-          <div class="row-desc">Góc hiện nút chat trên trang web</div>
-        </div>
-        <div class="row-right">
-          <div class="pos-select">
-            <button class="pos-btn active" data-pos="bottom-right" onclick="setPosition(this)">Phải</button>
-            <button class="pos-btn" data-pos="bottom-left" onclick="setPosition(this)">Trái</button>
+        <div class="row-l"><div class="row-label">📍 Vị trí hiển thị</div></div>
+        <div class="row-r">
+          <div class="pos-sel">
+            <button class="pos-btn active" data-pos="bottom-right" onclick="setPos(this)">↘ Phải</button>
+            <button class="pos-btn" data-pos="bottom-left" onclick="setPos(this)">↙ Trái</button>
           </div>
         </div>
       </div>
-
-      <!-- Offset -->
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">↔️ Khoảng cách</div>
-          <div class="row-desc">Khoảng cách từ mép màn hình (px)</div>
+        <div class="row-l"><div class="row-label">↔️ Khoảng cách (px)</div></div>
+        <div class="row-r">
+          <span class="px-lbl">Dưới</span>
+          <input type="number" id="cfg-oy" value="24" min="0" max="200" oninput="onCfgChange()">
+          <span class="px-lbl">Ngang</span>
+          <input type="number" id="cfg-ox" value="24" min="0" max="200" oninput="onCfgChange()">
         </div>
-        <div class="row-right">
-          <div class="offset-wrap">
-            <div class="offset-group">
-              <span class="offset-lbl">Bên dưới</span>
-              <input type="number" id="cfg-oy" value="24" min="0" max="200">
-              <span class="offset-lbl">px</span>
-            </div>
-            <div class="offset-group">
-              <span class="offset-lbl">Ngang</span>
-              <input type="number" id="cfg-ox" value="24" min="0" max="200">
-              <span class="offset-lbl">px</span>
-            </div>
+      </div>
+      <div class="row">
+        <div class="row-l"><div class="row-label">🎨 Màu chủ đạo</div></div>
+        <div class="row-r">
+          <div class="swatches">
+            <div class="swatch active" style="background:#C8001A" data-color="#C8001A" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#1a56db" data-color="#1a56db" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#0e9f6e" data-color="#0e9f6e" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#7e3af2" data-color="#7e3af2" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#ff5a1f" data-color="#ff5a1f" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#1a1d23" data-color="#1a1d23" onclick="setColor(this)"></div>
+            <div class="swatch" style="background:#0891b2" data-color="#0891b2" onclick="setColor(this)"></div>
+            <div class="swatch-custom" title="Tuỳ chọn màu">🎨<input type="color" id="cfg-color-pick" value="#C8001A" oninput="setCustomColor(this.value)"></div>
           </div>
         </div>
       </div>
-
-      <!-- Màu sắc -->
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">🎨 Màu chủ đạo</div>
-          <div class="row-desc">Màu nút, header và accent</div>
+        <div class="row-l">
+          <div class="row-label">🖼️ URL Logo</div>
+          <div class="row-desc">Để trống = dùng icon chat mặc định</div>
         </div>
-        <div class="row-right">
-          <div class="swatches" id="swatches">
-            <div class="swatch active" style="background:#C8001A" data-color="#C8001A" onclick="setColor(this)" title="Đỏ quốc kỳ"></div>
-            <div class="swatch" style="background:#1a56db" data-color="#1a56db" onclick="setColor(this)" title="Xanh dương"></div>
-            <div class="swatch" style="background:#0e9f6e" data-color="#0e9f6e" onclick="setColor(this)" title="Xanh lá"></div>
-            <div class="swatch" style="background:#7e3af2" data-color="#7e3af2" onclick="setColor(this)" title="Tím"></div>
-            <div class="swatch" style="background:#ff5a1f" data-color="#ff5a1f" onclick="setColor(this)" title="Cam"></div>
-            <div class="swatch" style="background:#1a1d23" data-color="#1a1d23" onclick="setColor(this)" title="Đen"></div>
-            <div class="swatch" style="background:#0891b2" data-color="#0891b2" onclick="setColor(this)" title="Xanh ngọc"></div>
-            <div class="swatch-custom" title="Tuỳ chọn màu">
-              🎨
-              <input type="color" id="cfg-color-custom" value="#C8001A" oninput="setCustomColor(this.value)">
-            </div>
-          </div>
-        </div>
+        <div class="row-r"><input type="text" id="cfg-logo" placeholder="https://..." oninput="onCfgChange()"></div>
       </div>
-
-      <!-- Logo -->
       <div class="row">
-        <div class="row-left">
-          <div class="row-label">🖼️ Biểu tượng nút</div>
-          <div class="row-desc">Icon mặc định hoặc tải lên ảnh logo</div>
-        </div>
-        <div class="row-right">
-          <div class="icon-picks">
-            <div class="icon-pick active" id="icon-default" onclick="setIcon('default')" title="Icon mặc định">💬</div>
-            <div class="icon-pick icon-pick-upload" title="Tải ảnh lên">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9l-7-7-7 7h4v6h6V9h4zm-7 9H5v2h14v-2h-7z"/></svg>
-              <span style="font-size:10px">Tải lên</span>
-              <input type="file" accept="image/*" onchange="uploadIcon(this)">
-            </div>
-            <div class="icon-pick" id="icon-url-wrap" onclick="promptLogoUrl()" title="Dùng URL">🔗</div>
-          </div>
-        </div>
+        <div class="row-l"><div class="row-label">✨ Hiệu ứng pulse</div></div>
+        <div class="row-r"><label class="toggle"><input type="checkbox" id="cfg-pulse" checked onchange="onCfgChange()"><span class="toggle-sl"></span></label></div>
       </div>
-
-      <!-- Hiệu ứng -->
-      <div class="row">
-        <div class="row-left">
-          <div class="row-label">✨ Hiệu ứng pulse</div>
-          <div class="row-desc">Animation nhấp nháy để thu hút chú ý</div>
-        </div>
-        <div class="row-right">
-          <label class="toggle">
-            <input type="checkbox" id="cfg-pulse" checked onchange="updatePreview()">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Greeting auto-hide -->
-      <div class="row">
-        <div class="row-left">
-          <div class="row-label">⏱️ Tin nhắn chào xuất hiện</div>
-          <div class="row-desc">Thời gian tự động ẩn tin nhắn chào (giây)</div>
-        </div>
-        <div class="row-right">
-          <label class="toggle" style="margin-right:8px">
-            <input type="checkbox" id="cfg-greet-show" checked onchange="updatePreview()">
-            <span class="toggle-slider"></span>
-          </label>
-          <input type="number" id="cfg-greet-delay" value="8" min="0" max="60" style="width:56px">
-          <span class="offset-lbl">giây</span>
-        </div>
-      </div>
-
     </div>
 
-    <!-- ── PANEL 3: Mã nhúng ── -->
     <div class="panel">
       <div class="panel-head">
-        <div class="panel-head-icon">💾</div>
-        <div>
-          <h2>Mã Code cài đặt</h2>
-          <p>Đặt đoạn code dưới đây vào trước thẻ &lt;/body&gt;</p>
-        </div>
+        <div class="panel-icon">💾</div>
+        <div><h2>Mã nhúng</h2><p>Dán vào trước thẻ &lt;/body&gt; của website</p></div>
       </div>
-      <div style="padding:20px 24px 24px">
-        <div class="code-block" id="code-output">
-          <button class="copy-btn" id="copy-btn" onclick="copyCode()">Sao chép</button>
-          <span id="code-text"></span>
-        </div>
+      <div style="padding:18px 22px 22px">
+        <div class="code-block"><button class="copy-btn" id="copy-btn" onclick="copyCode()">Sao chép</button><span id="code-out"></span></div>
       </div>
     </div>
 
   </div>
 
-  <!-- RIGHT: PREVIEW -->
-  <div class="preview-panel">
-    <div class="panel" style="overflow:visible">
+  <!-- ══ RIGHT ══ -->
+  <div class="right-col">
+
+    <div class="panel">
       <div class="panel-head">
-        <div class="panel-head-icon">👁️</div>
-        <div>
-          <h2>Xem trước</h2>
-          <p>Live preview · Nhấn nút để thử</p>
-        </div>
-      </div>
-      <div class="preview-wrap" id="preview-wrap">
-
-        <!-- Mock greeting bubble -->
-        <div id="mock-greet">Đang tải...</div>
-
-        <!-- Mock button -->
-        <button id="mock-btn" onclick="toggleMockWin()">💬</button>
-
-        <!-- Mock chat window -->
-        <div id="mock-win">
-          <div id="mock-win-header">
-            <div class="mock-avatar" id="mock-avatar">💬</div>
-            <div class="mock-htxt">
-              <h4 id="mock-title">Hỏi đáp Bầu cử 2026</h4>
-              <p><span class="mock-dot"></span><span id="mock-subtitle">Trợ lý AI · Luôn sẵn sàng</span></p>
-            </div>
-            <button id="mock-close" onclick="toggleMockWin()">✕</button>
-          </div>
-          <div id="mock-body">
-            <div class="mock-bubble" id="mock-greeting-msg">Xin chào! Tôi có thể hỗ trợ gì?</div>
-          </div>
-          <div id="mock-input">
-            <input id="mock-input-field" type="text" placeholder="Nhập câu hỏi..." readonly>
-            <button id="mock-send">
-              <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-            </button>
-          </div>
-        </div>
-
+        <div class="panel-icon">🚀</div>
+        <div><h2>Trải nghiệm trực tiếp</h2><p>Khởi động widget thật ngay trên trang này</p></div>
       </div>
 
-      <!-- Action buttons -->
-      <div class="action-bar">
-        <button class="btn-primary" onclick="copyCode()">
-          📋 Sao chép mã
+      <div class="demo-screen">
+        <div class="demo-bg"></div>
+        <div class="demo-lbl">LIVE DEMO</div>
+        <div class="demo-dots">
+          <div class="demo-dot" style="background:#ff5f57"></div>
+          <div class="demo-dot" style="background:#febc2e"></div>
+          <div class="demo-dot" style="background:#28c840"></div>
+        </div>
+
+        <div class="status-card" id="status-idle">
+          <div class="status-icon">🗳️</div>
+          <div class="status-title">Widget chưa khởi động</div>
+          <div class="status-sub">Điền Webapp URL và nhấn<br>nút bên dưới để thử ngay</div>
+        </div>
+
+        <div class="status-card" id="status-running" style="display:none">
+          <div class="status-icon">✅</div>
+          <div class="status-title" style="color:#4ade80">Widget đang chạy!</div>
+          <div class="status-sub">Nhìn góc <strong id="pos-hint" style="color:#fff">dưới phải</strong><br>màn hình để thấy nút chat 👇</div>
+          <button class="reset-btn" onclick="destroyWidget()" style="margin-top:4px">🗑️ Xoá & thử lại</button>
+        </div>
+      </div>
+
+      <div style="padding:20px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;border-top:1px solid var(--border)">
+        <button class="try-btn" id="try-btn" onclick="tryWidget()">
+          <span id="try-icon">▶</span>
+          <span id="try-label">Trải nghiệm ngay</span>
         </button>
-        <button class="btn-secondary" onclick="resetDefaults()">↺ Đặt lại</button>
+        <div style="font-size:11px;color:var(--muted);text-align:center" id="try-hint">Nhập Webapp URL để kích hoạt</div>
       </div>
     </div>
-  </div>
 
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-icon">📋</div>
+        <div><h2>Hướng dẫn cài đặt</h2><p>3 bước nhúng vào bất kỳ website</p></div>
+      </div>
+      <div style="padding:16px 22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Host widget lên GitHub Pages</div>
+            <div class="step-desc">File JS đã có tại:<br><a href="https://leanhtien.github.io/baucubot-widget/baucubot-widget.js" target="_blank" style="color:var(--primary);font-size:11px;word-break:break-all">leanhtien.github.io/baucubot-widget/baucubot-widget.js</a></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Cấu hình trên trang này</div>
+            <div class="step-desc">Tuỳ chỉnh màu sắc, tiêu đề, vị trí theo brand của website khách hàng. Nhấn "Trải nghiệm ngay" để kiểm tra trước khi gửi.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Sao chép mã & dán vào website</div>
+            <div class="step-desc">Dán đoạn mã vào trước thẻ <code>&lt;/body&gt;</code> — không cần chỉnh thêm gì.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
+<!-- ══ WIDGET INLINE ══ -->
 <script>
-  /* ── STATE ── */
-  const cfg = {
-    url      : '',
-    title    : 'Hỏi đáp Bầu cử 2026',
-    subtitle : 'Trợ lý AI · Luôn sẵn sàng',
-    greeting : 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?',
-    color    : '#C8001A',
-    position : 'bottom-right',
-    ox       : 24,
-    oy       : 24,
-    logo     : '',
-    pulse    : true,
-    greetShow: true,
-    greetDelay: 8,
+(function(global) {
+  'use strict';
+  const BCB = { _ready: false };
+
+  BCB.destroy = function() {
+    var r = document.getElementById('bcb-root');
+    if (r) r.remove();
+    var s = document.getElementById('bcb-style');
+    if (s) s.remove();
+    BCB._ready = false; BCB.open = null; BCB.close = null;
   };
 
-  let mockOpen = false;
-
-  /* ── INPUTS → cfg ── */
-  function bindInputs() {
-    const map = {
-      'cfg-url'        : 'url',
-      'cfg-title'      : 'title',
-      'cfg-subtitle'   : 'subtitle',
-      'cfg-greeting'   : 'greeting',
-      'cfg-ox'         : 'ox',
-      'cfg-oy'         : 'oy',
-      'cfg-greet-delay': 'greetDelay',
+  BCB.init = function(cfg) {
+    if (BCB._ready) return;
+    BCB._ready = true;
+    var C = {
+      webapp_url: cfg.webapp_url || '',
+      position  : cfg.position   || 'bottom-right',
+      color     : cfg.color      || '#C8001A',
+      logo      : cfg.logo       || '',
+      title     : cfg.title      || 'Hỏi đáp Bầu cử 2026',
+      subtitle  : cfg.subtitle   || 'Trợ lý AI · Luôn sẵn sàng',
+      greeting  : cfg.greeting   || 'Xin chào! Tôi có thể hỗ trợ gì ạ?',
+      offset_x  : cfg.offset_x !== undefined ? cfg.offset_x : 24,
+      offset_y  : cfg.offset_y !== undefined ? cfg.offset_y : 24,
+      pulse     : cfg.pulse !== false,
     };
-    Object.entries(map).forEach(function([id, key]) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener('input', function() {
-        cfg[key] = el.type === 'number' ? parseInt(el.value)||0 : el.value;
-        updatePreview();
-        updateCode();
-      });
-    });
+    if (!C.webapp_url) { BCB._ready = false; return; }
+    var L = C.position === 'bottom-left', hx = L ? 'left' : 'right', isOpen = false;
+    var st = document.createElement('style'); st.id = 'bcb-style';
+    st.textContent = '#bcb-root *,#bcb-root *::before,#bcb-root *::after{box-sizing:border-box;margin:0;padding:0}'
+      +'#bcb-btn{position:fixed;'+hx+':'+C.offset_x+'px;bottom:'+C.offset_y+'px;z-index:2147483646;width:60px;height:60px;border-radius:50%;background:'+C.color+';border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;'+(C.pulse?'animation:bcb-pulse 3s ease-in-out infinite':'')+' }'
+      +'#bcb-btn:hover{transform:scale(1.08);animation:none}'
+      +'@keyframes bcb-pulse{0%,100%{box-shadow:0 4px 20px rgba(0,0,0,.25),0 0 0 0 '+C.color+'55}50%{box-shadow:0 4px 20px rgba(0,0,0,.25),0 0 0 10px '+C.color+'00}}'
+      +'#bcb-btn svg{width:28px;height:28px;fill:#fff}'
+      +'#bcb-btn .bcb-ico-close{display:none}'
+      +'#bcb-btn.open .bcb-ico-chat{display:none}'
+      +'#bcb-btn.open .bcb-ico-close{display:block}'
+      +'#bcb-btn img.bcb-logo{width:38px;height:38px;border-radius:50%;object-fit:cover}'
+      +'#bcb-greet{position:fixed;'+hx+':'+(C.offset_x+70)+'px;bottom:'+(C.offset_y+8)+'px;z-index:2147483645;background:#fff;color:#1a1a2e;font-family:-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.45;padding:10px 14px 10px 16px;border-radius:18px 18px '+(L?'18px 4px':'4px 18px')+';box-shadow:0 4px 20px rgba(0,0,0,.13);max-width:230px;display:flex;align-items:flex-start;gap:8px;animation:bcb-si .35s cubic-bezier(.22,.68,0,1.3) both}'
+      +'#bcb-greet span{flex:1}'
+      +'#bcb-greet-close{cursor:pointer;opacity:.45;font-size:18px;line-height:1;flex-shrink:0}'
+      +'@keyframes bcb-si{from{opacity:0;transform:translateY(8px) scale(.95)}to{opacity:1;transform:none}}'
+      +'#bcb-win{position:fixed;'+hx+':'+C.offset_x+'px;bottom:'+(C.offset_y+72)+'px;z-index:2147483647;width:390px;height:min(620px,calc(100vh - '+(C.offset_y+90)+'px));border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.22);background:#f5f3ee;display:flex;flex-direction:column;transform-origin:'+hx+' bottom;transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.22,.68,0,1.2),opacity .25s}'
+      +'#bcb-win.open{transform:none;opacity:1;pointer-events:auto}'
+      +'#bcb-header{background:'+C.color+';padding:14px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;overflow:hidden}'
+      +'#bcb-header::after{content:"★";position:absolute;right:-8px;top:-18px;font-size:90px;color:rgba(255,255,255,.05);line-height:1;pointer-events:none}'
+      +'#bcb-header-icon{width:40px;height:40px;flex-shrink:0;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}'
+      +'#bcb-header-icon img{width:100%;height:100%;object-fit:cover}'
+      +'.bcb-star{width:22px;height:22px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);background:#E8A020}'
+      +'.bcb-htxt h3{font-family:-apple-system,"Segoe UI",sans-serif;font-size:15px;font-weight:600;color:#fff;line-height:1.2}'
+      +'.bcb-htxt p{font-size:12px;color:rgba(255,255,255,.72);margin-top:2px;display:flex;align-items:center;gap:5px}'
+      +'.bcb-dot{width:7px;height:7px;border-radius:50%;background:#5ef58a;flex-shrink:0}'
+      +'#bcb-close-win{margin-left:auto;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.7);font-size:22px;padding:4px;border-radius:6px;transition:color .15s}'
+      +'#bcb-close-win:hover{color:#fff;background:rgba(255,255,255,.12)}'
+      +'#bcb-iframe{flex:1;border:none;background:#f5f3ee;display:block;width:100%}'
+      +'@media(max-width:480px){#bcb-win{'+hx+':0!important;'+(L?'right':'left')+':0!important;bottom:0!important;width:100%!important;height:100%!important;border-radius:0!important}#bcb-greet{display:none!important}}';
+    document.head.appendChild(st);
+    var root = document.createElement('div'); root.id = 'bcb-root'; document.body.appendChild(root);
+    var greet = document.createElement('div'); greet.id = 'bcb-greet';
+    greet.innerHTML = '<span>'+C.greeting+'</span><span id="bcb-greet-close" title="Đóng">×</span>';
+    root.appendChild(greet);
+    var btn = document.createElement('button'); btn.id = 'bcb-btn'; btn.setAttribute('aria-label','Mở chat');
+    btn.innerHTML = (C.logo ? '<img class="bcb-logo" src="'+C.logo+'" alt="Logo" onerror="this.style.display=\'none\'"><svg class="bcb-ico-chat" style="display:none" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>' : '<svg class="bcb-ico-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>') + '<svg class="bcb-ico-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+    root.appendChild(btn);
+    var win = document.createElement('div'); win.id = 'bcb-win';
+    var hdr = document.createElement('div'); hdr.id = 'bcb-header';
+    hdr.innerHTML = '<div id="bcb-header-icon">'+(C.logo ? '<img src="'+C.logo+'" alt="" onerror="this.parentElement.innerHTML=\'<div class=bcb-star></div>\'">' : '<div class="bcb-star"></div>')+'</div><div class="bcb-htxt"><h3>'+C.title+'</h3><p><span class="bcb-dot"></span>'+C.subtitle+'</p></div><button id="bcb-close-win" title="Thu nhỏ">⌄</button>';
+    win.appendChild(hdr);
+    var iframe = document.createElement('iframe'); iframe.id = 'bcb-iframe'; iframe.title = C.title; iframe.setAttribute('allow','clipboard-write');
+    win.appendChild(iframe); root.appendChild(win);
+    function openChat() { isOpen=true; win.classList.add('open'); btn.classList.add('open'); greet.style.display='none'; if(!iframe.src) iframe.src=C.webapp_url; }
+    function closeChat() { isOpen=false; win.classList.remove('open'); btn.classList.remove('open'); }
+    btn.addEventListener('click', function(){ isOpen ? closeChat() : openChat(); });
+    document.getElementById('bcb-close-win').addEventListener('click', closeChat);
+    document.getElementById('bcb-greet-close').addEventListener('click', function(){ greet.style.display='none'; });
+    setTimeout(function(){ if(!isOpen&&greet.style.display!=='none'){ greet.style.transition='opacity .4s'; greet.style.opacity='0'; setTimeout(function(){ greet.style.display='none'; },400); } },8000);
+    document.addEventListener('click', function(e){ if(isOpen&&!win.contains(e.target)&&!btn.contains(e.target)) closeChat(); });
+    BCB.open = openChat; BCB.close = closeChat;
+  };
+  global.BauCuBot = BCB;
+})(window);
 
-    document.getElementById('cfg-pulse').addEventListener('change', function() {
-      cfg.pulse = this.checked; updatePreview();
-    });
-    document.getElementById('cfg-greet-show').addEventListener('change', function() {
-      cfg.greetShow = this.checked; updatePreview();
-    });
+/* ── CONFIG STATE ── */
+var cfgState = { color: '#C8001A', position: 'bottom-right' };
+
+function getCfg() {
+  return {
+    webapp_url: document.getElementById('cfg-url').value.trim(),
+    title     : document.getElementById('cfg-title').value,
+    subtitle  : document.getElementById('cfg-subtitle').value,
+    greeting  : document.getElementById('cfg-greeting').value,
+    color     : cfgState.color,
+    position  : cfgState.position,
+    offset_x  : parseInt(document.getElementById('cfg-ox').value)||24,
+    offset_y  : parseInt(document.getElementById('cfg-oy').value)||24,
+    logo      : document.getElementById('cfg-logo').value.trim(),
+    pulse     : document.getElementById('cfg-pulse').checked,
+  };
+}
+
+function tryWidget() {
+  var c = getCfg();
+  if (!c.webapp_url) {
+    document.getElementById('url-warn').classList.add('show');
+    document.getElementById('cfg-url').focus();
+    return;
   }
+  document.getElementById('url-warn').classList.remove('show');
+  BauCuBot.destroy();
+  BauCuBot.init(c);
+  document.getElementById('status-idle').style.display    = 'none';
+  document.getElementById('status-running').style.display = 'flex';
+  document.getElementById('pos-hint').textContent = c.position === 'bottom-left' ? 'dưới trái' : 'dưới phải';
+  var btn = document.getElementById('try-btn');
+  btn.classList.add('running');
+  document.getElementById('try-icon').textContent  = '✅';
+  document.getElementById('try-label').textContent = 'Widget đang chạy!';
+  document.getElementById('try-hint').textContent  = 'Nhìn góc màn hình để thấy nút chat';
+  setTimeout(function(){ if (BauCuBot.open) BauCuBot.open(); }, 500);
+}
 
-  /* ── POSITION ── */
-  function setPosition(btn) {
-    document.querySelectorAll('.pos-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    cfg.position = btn.dataset.pos;
-    updatePreview();
-    updateCode();
-  }
+function destroyWidget() {
+  BauCuBot.destroy();
+  document.getElementById('status-idle').style.display    = 'flex';
+  document.getElementById('status-running').style.display = 'none';
+  var btn = document.getElementById('try-btn');
+  btn.classList.remove('running');
+  document.getElementById('try-icon').textContent  = '▶';
+  document.getElementById('try-label').textContent = 'Trải nghiệm ngay';
+  document.getElementById('try-hint').textContent  = 'Cấu hình xong → nhấn để khởi động lại';
+}
 
-  /* ── COLOR ── */
-  function setColor(el) {
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-    cfg.color = el.dataset.color;
-    document.getElementById('cfg-color-custom').value = cfg.color;
-    applyColor();
-    updateCode();
-  }
-  function setCustomColor(val) {
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-    cfg.color = val;
-    applyColor();
-    updateCode();
-  }
-  function applyColor() {
-    document.getElementById('mock-btn').style.background = cfg.color;
-    document.getElementById('mock-win-header').style.background = cfg.color;
-    document.getElementById('mock-send').style.background = cfg.color;
-  }
-
-  /* ── ICON ── */
-  function setIcon(type) {
-    cfg.logo = '';
-    document.getElementById('mock-avatar').innerHTML = '💬';
-    document.getElementById('mock-btn').innerHTML = '💬';
-    document.querySelectorAll('.icon-pick').forEach(el => el.classList.remove('active'));
-    document.getElementById('icon-default').classList.add('active');
-    updateCode();
-  }
-  function uploadIcon(input) {
-    const file = input.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      cfg.logo = e.target.result;
-      const img = '<img src="' + cfg.logo + '" style="width:34px;height:34px;border-radius:50%;object-fit:cover">';
-      document.getElementById('mock-avatar').innerHTML = img;
-      document.getElementById('mock-btn').innerHTML = '<img src="' + cfg.logo + '" style="width:38px;height:38px;border-radius:50%;object-fit:cover">';
-      document.querySelectorAll('.icon-pick').forEach(el => el.classList.remove('active'));
-      updateCode();
-    };
-    reader.readAsDataURL(file);
-  }
-  function promptLogoUrl() {
-    const url = prompt('Nhập URL ảnh logo:');
-    if (!url) return;
-    cfg.logo = url;
-    const img = '<img src="' + url + '" style="width:34px;height:34px;border-radius:50%;object-fit:cover" onerror="this.parentElement.innerHTML=\'💬\'">';
-    document.getElementById('mock-avatar').innerHTML = img;
-    document.getElementById('mock-btn').innerHTML = '<img src="' + url + '" style="width:38px;height:38px;border-radius:50%;object-fit:cover"> ';
-    document.querySelectorAll('.icon-pick').forEach(el => el.classList.remove('active'));
-    updateCode();
-  }
-
-  /* ── PREVIEW UPDATE ── */
-  function updatePreview() {
-    // greeting
-    const greet = document.getElementById('mock-greet');
-    greet.textContent = document.getElementById('cfg-greeting').value || cfg.greeting;
-    greet.style.display = cfg.greetShow && !mockOpen ? '' : 'none';
-
-    // titles
-    document.getElementById('mock-title').textContent    = document.getElementById('cfg-title').value;
-    document.getElementById('mock-subtitle').textContent = document.getElementById('cfg-subtitle').value;
-    document.getElementById('mock-greeting-msg').textContent = document.getElementById('cfg-greeting').value;
-
-    // position
-    const isLeft = cfg.position === 'bottom-left';
-    const btn = document.getElementById('mock-btn');
-    const win = document.getElementById('mock-win');
-    const greetEl = document.getElementById('mock-greet');
-    btn.style.right = isLeft ? 'auto' : '24px';
-    btn.style.left  = isLeft ? '24px' : 'auto';
-    win.style.right = isLeft ? 'auto' : '14px';
-    win.style.left  = isLeft ? '14px' : 'auto';
-    greetEl.style.right = isLeft ? 'auto' : '90px';
-    greetEl.style.left  = isLeft ? '90px' : 'auto';
-
-    // pulse
-    btn.style.animation = cfg.pulse ? 'preview-pulse 3s ease-in-out infinite' : 'none';
-  }
-
-  function toggleMockWin() {
-    mockOpen = !mockOpen;
-    document.getElementById('mock-win').classList.toggle('open', mockOpen);
-    document.getElementById('mock-greet').style.display = mockOpen ? 'none' : (cfg.greetShow ? '' : 'none');
-  }
-
-  /* ── CODE GENERATOR ── */
-  function updateCode() {
-    const url    = document.getElementById('cfg-url').value || 'WEBAPP_URL';
-    const title  = document.getElementById('cfg-title').value;
-    const sub    = document.getElementById('cfg-subtitle').value;
-    const greet  = document.getElementById('cfg-greeting').value;
-    const ox     = document.getElementById('cfg-ox').value;
-    const oy     = document.getElementById('cfg-oy').value;
-    const delay  = document.getElementById('cfg-greet-delay').value;
-
-    const lines = [];
-    lines.push('<span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-str">"https://leanhtien.github.io/baucubot-widget/baucubot-widget.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span>');
-    lines.push('<span class="code-tag">&lt;script&gt;</span>');
-    lines.push('  BauCuBot.<span class="code-key">init</span>({');
-    lines.push('    <span class="code-key">webapp_url</span> : <span class="code-str">"' + escHtml(url) + '"</span>,');
-    if (title !== 'Hỏi đáp Bầu cử 2026')
-      lines.push('    <span class="code-key">title</span>      : <span class="code-str">"' + escHtml(title) + '"</span>,');
-    if (sub !== 'Trợ lý AI · Luôn sẵn sàng')
-      lines.push('    <span class="code-key">subtitle</span>  : <span class="code-str">"' + escHtml(sub) + '"</span>,');
-    if (greet !== 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?')
-      lines.push('    <span class="code-key">greeting</span>  : <span class="code-str">"' + escHtml(greet) + '"</span>,');
-    if (cfg.color !== '#C8001A')
-      lines.push('    <span class="code-key">color</span>     : <span class="code-str">"' + cfg.color + '"</span>,');
-    if (cfg.logo)
-      lines.push('    <span class="code-key">logo</span>      : <span class="code-str">"' + (cfg.logo.startsWith('data:') ? '// [base64 image]' : escHtml(cfg.logo)) + '"</span>,');
-    if (cfg.position !== 'bottom-right')
-      lines.push('    <span class="code-key">position</span>  : <span class="code-str">"' + cfg.position + '"</span>,');
-    if (ox !== '24')
-      lines.push('    <span class="code-key">offset_x</span>  : <span class="code-val">' + ox + '</span>,');
-    if (oy !== '24')
-      lines.push('    <span class="code-key">offset_y</span>  : <span class="code-val">' + oy + '</span>,');
-    if (delay !== '8')
-      lines.push('    <span class="code-key">greet_delay</span>: <span class="code-val">' + delay + '</span>,');
-    lines.push('  });');
-    lines.push('<span class="code-tag">&lt;/script&gt;</span>');
-
-    document.getElementById('code-text').innerHTML = lines.join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  /* ── COPY ── */
-  function copyCode() {
-    const url    = document.getElementById('cfg-url').value || 'WEBAPP_URL';
-    const title  = document.getElementById('cfg-title').value;
-    const sub    = document.getElementById('cfg-subtitle').value;
-    const greet  = document.getElementById('cfg-greeting').value;
-    const ox     = document.getElementById('cfg-ox').value;
-    const oy     = document.getElementById('cfg-oy').value;
-    const delay  = document.getElementById('cfg-greet-delay').value;
-
-    let code = '<script src="https://leanhtien.github.io/baucubot-widget/baucubot-widget.js"><\/script>\n';
-    code += '<script>\n';
-    code += '  BauCuBot.init({\n';
-    code += '    webapp_url : "' + url + '",\n';
-    if (title !== 'Hỏi đáp Bầu cử 2026') code += '    title      : "' + title + '",\n';
-    if (sub !== 'Trợ lý AI · Luôn sẵn sàng') code += '    subtitle   : "' + sub + '",\n';
-    if (greet !== 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?') code += '    greeting   : "' + greet + '",\n';
-    if (cfg.color !== '#C8001A') code += '    color      : "' + cfg.color + '",\n';
-    if (cfg.logo && !cfg.logo.startsWith('data:')) code += '    logo       : "' + cfg.logo + '",\n';
-    if (cfg.position !== 'bottom-right') code += '    position   : "' + cfg.position + '",\n';
-    if (ox !== '24') code += '    offset_x   : ' + ox + ',\n';
-    if (oy !== '24') code += '    offset_y   : ' + oy + ',\n';
-    if (delay !== '8') code += '    greet_delay: ' + delay + ',\n';
-    code += '  });\n';
-    code += '<\/script>';
-
-    navigator.clipboard.writeText(code).then(function() {
-      const btn = document.getElementById('copy-btn');
-      btn.textContent = '✅ Đã sao chép';
-      btn.classList.add('copied');
-      setTimeout(function() {
-        btn.textContent = 'Sao chép';
-        btn.classList.remove('copied');
-      }, 2200);
-    });
-  }
-
-  /* ── RESET ── */
-  function resetDefaults() {
-    document.getElementById('cfg-url').value         = '';
-    document.getElementById('cfg-title').value       = 'Hỏi đáp Bầu cử 2026';
-    document.getElementById('cfg-subtitle').value    = 'Trợ lý AI · Luôn sẵn sàng';
-    document.getElementById('cfg-greeting').value    = 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?';
-    document.getElementById('cfg-ox').value          = '24';
-    document.getElementById('cfg-oy').value          = '24';
-    document.getElementById('cfg-greet-delay').value = '8';
-    document.getElementById('cfg-pulse').checked     = true;
-    document.getElementById('cfg-greet-show').checked= true;
-    cfg.color = '#C8001A'; cfg.position = 'bottom-right'; cfg.logo = '';
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-    document.querySelector('.swatch[data-color="#C8001A"]').classList.add('active');
-    document.querySelectorAll('.pos-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.pos === 'bottom-right');
-    });
-    applyColor();
-    updatePreview();
-    updateCode();
-  }
-
-  /* ── INIT ── */
-  bindInputs();
-  applyColor();
-  updatePreview();
+function onCfgChange() {
+  if (BauCuBot._ready) destroyWidget();
   updateCode();
+}
+function setPos(el) {
+  document.querySelectorAll('.pos-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  cfgState.position = el.dataset.pos;
+  onCfgChange();
+}
+function setColor(el) {
+  document.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('active'); });
+  el.classList.add('active');
+  cfgState.color = el.dataset.color;
+  document.getElementById('cfg-color-pick').value = cfgState.color;
+  onCfgChange();
+}
+function setCustomColor(val) {
+  document.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('active'); });
+  cfgState.color = val;
+  onCfgChange();
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function updateCode() {
+  var c = getCfg(), url = c.webapp_url || 'WEBAPP_URL', lines = [];
+  lines.push('<span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-str">"https://leanhtien.github.io/baucubot-widget/baucubot-widget.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span>');
+  lines.push('<span class="code-tag">&lt;script&gt;</span>');
+  lines.push('  BauCuBot.<span class="code-key">init</span>({');
+  lines.push('    <span class="code-key">webapp_url</span> : <span class="code-str">"'+esc(url)+'"</span>,');
+  if (c.title !== 'Hỏi đáp Bầu cử 2026') lines.push('    <span class="code-key">title</span>      : <span class="code-str">"'+esc(c.title)+'"</span>,');
+  if (c.subtitle !== 'Trợ lý AI · Luôn sẵn sàng') lines.push('    <span class="code-key">subtitle</span>   : <span class="code-str">"'+esc(c.subtitle)+'"</span>,');
+  if (c.greeting !== 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?') lines.push('    <span class="code-key">greeting</span>   : <span class="code-str">"'+esc(c.greeting)+'"</span>,');
+  if (c.color !== '#C8001A') lines.push('    <span class="code-key">color</span>      : <span class="code-str">"'+c.color+'"</span>,');
+  if (c.logo) lines.push('    <span class="code-key">logo</span>       : <span class="code-str">"'+esc(c.logo)+'"</span>,');
+  if (c.position !== 'bottom-right') lines.push('    <span class="code-key">position</span>   : <span class="code-str">"'+c.position+'"</span>,');
+  if (c.offset_x !== 24) lines.push('    <span class="code-key">offset_x</span>   : <span class="code-val">'+c.offset_x+'</span>,');
+  if (c.offset_y !== 24) lines.push('    <span class="code-key">offset_y</span>   : <span class="code-val">'+c.offset_y+'</span>,');
+  if (!c.pulse) lines.push('    <span class="code-key">pulse</span>      : <span class="code-val">false</span>,');
+  lines.push('  });');
+  lines.push('<span class="code-tag">&lt;/script&gt;</span>');
+  document.getElementById('code-out').innerHTML = lines.join('\n');
+}
+
+function copyCode() {
+  var c = getCfg(), url = c.webapp_url || 'WEBAPP_URL';
+  var code = '<script src="https://leanhtien.github.io/baucubot-widget/baucubot-widget.js"><\/script>\n<script>\n  BauCuBot.init({\n';
+  code += '    webapp_url : "'+url+'",\n';
+  if (c.title !== 'Hỏi đáp Bầu cử 2026') code += '    title      : "'+c.title+'",\n';
+  if (c.subtitle !== 'Trợ lý AI · Luôn sẵn sàng') code += '    subtitle   : "'+c.subtitle+'",\n';
+  if (c.greeting !== 'Xin chào Anh/Chị, Bot Bầu Cử có thể hỗ trợ gì ạ?') code += '    greeting   : "'+c.greeting+'",\n';
+  if (c.color !== '#C8001A') code += '    color      : "'+c.color+'",\n';
+  if (c.logo) code += '    logo       : "'+c.logo+'",\n';
+  if (c.position !== 'bottom-right') code += '    position   : "'+c.position+'",\n';
+  if (c.offset_x !== 24) code += '    offset_x   : '+c.offset_x+',\n';
+  if (c.offset_y !== 24) code += '    offset_y   : '+c.offset_y+',\n';
+  if (!c.pulse) code += '    pulse      : false,\n';
+  code += '  });\n<\/script>';
+  navigator.clipboard.writeText(code).then(function(){
+    var b = document.getElementById('copy-btn');
+    b.textContent = '✅ Đã sao chép!'; b.classList.add('copied');
+    setTimeout(function(){ b.textContent='Sao chép'; b.classList.remove('copied'); }, 2200);
+  });
+}
+
+updateCode();
 </script>
 </body>
 </html>
