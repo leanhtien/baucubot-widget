@@ -61,6 +61,9 @@ textarea { width:100%; resize:vertical; min-height:56px; margin-top:8px; }
 
 .pos-sel { display:flex; gap:6px; }
 .pos-btn { padding:6px 13px; border:1.5px solid var(--border); border-radius:7px; cursor:pointer; font-size:12px; font-weight:500; background:#fff; color:var(--muted); transition:all .15s; font-family:inherit; }
+.size-btn { padding:6px 10px; border:1.5px solid var(--border); border-radius:7px; cursor:pointer; font-size:12px; font-weight:500; background:#fff; color:var(--muted); transition:all .15s; font-family:inherit; text-align:center; line-height:1.3; }
+.size-btn:hover { border-color:var(--primary); }
+.size-btn.active { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
 .pos-btn.active { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
 
 .code-block { background:#1e1e2e; border-radius:10px; padding:16px 18px; font-family:'Fira Code','Courier New',monospace; font-size:12px; color:#cdd6f4; line-height:1.8; white-space:pre; overflow-x:auto; position:relative; margin-top:12px; }
@@ -172,6 +175,29 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
           <input type="number" id="cfg-ox" value="24" min="0" max="200" oninput="onCfgChange()">
         </div>
       </div>
+      <!-- SIZE -->
+      <div class="row" style="flex-wrap:wrap;gap:10px;align-items:flex-start">
+        <div class="row-l">
+          <div class="row-label">📐 Kích thước khung chat</div>
+          <div class="row-desc">Chọn preset hoặc tự nhập (px)</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+            <button class="size-btn" data-w="360" data-h="560" onclick="setSize(this)">360×560<br><span style="font-size:10px;opacity:.55">Nhỏ</span></button>
+            <button class="size-btn active" data-w="390" data-h="620" onclick="setSize(this)">390×620<br><span style="font-size:10px;opacity:.55">Mặc định</span></button>
+            <button class="size-btn" data-w="440" data-h="680" onclick="setSize(this)">440×680<br><span style="font-size:10px;opacity:.55">Vừa</span></button>
+            <button class="size-btn" data-w="500" data-h="740" onclick="setSize(this)">500×740<br><span style="font-size:10px;opacity:.55">Lớn</span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="px-lbl">W</span>
+            <input type="number" id="cfg-w" value="390" min="280" max="700" style="width:66px" oninput="onSizeInput()">
+            <span class="px-lbl">×  H</span>
+            <input type="number" id="cfg-h" value="620" min="300" max="900" style="width:66px" oninput="onSizeInput()">
+            <span class="px-lbl">px</span>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="row-l"><div class="row-label">🎨 Màu chủ đạo</div></div>
         <div class="row-r">
@@ -313,6 +339,8 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       greeting  : cfg.greeting   || 'Xin chào! Tôi có thể hỗ trợ gì ạ?',
       offset_x  : cfg.offset_x !== undefined ? cfg.offset_x : 24,
       offset_y  : cfg.offset_y !== undefined ? cfg.offset_y : 24,
+      width     : cfg.width  || 390,
+      height    : cfg.height || 620,
       pulse     : cfg.pulse !== false,
     };
     if (!C.webapp_url) { BCB._ready = false; return; }
@@ -331,7 +359,7 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
       +'#bcb-greet span{flex:1}'
       +'#bcb-greet-close{cursor:pointer;opacity:.45;font-size:18px;line-height:1;flex-shrink:0}'
       +'@keyframes bcb-si{from{opacity:0;transform:translateY(8px) scale(.95)}to{opacity:1;transform:none}}'
-      +'#bcb-win{position:fixed;'+hx+':'+C.offset_x+'px;bottom:'+(C.offset_y+72)+'px;z-index:2147483647;width:390px;height:min(620px,calc(100vh - '+(C.offset_y+90)+'px));border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.22);background:#f5f3ee;display:flex;flex-direction:column;transform-origin:'+hx+' bottom;transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.22,.68,0,1.2),opacity .25s}'
+      +'#bcb-win{position:fixed;'+hx+':'+C.offset_x+'px;bottom:'+(C.offset_y+72)+'px;z-index:2147483647;width:'+C.width+'px;height:min('+C.height+'px,calc(100vh - '+(C.offset_y+90)+'px));border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.22);background:#f5f3ee;display:flex;flex-direction:column;transform-origin:'+hx+' bottom;transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.22,.68,0,1.2),opacity .25s}'
       +'#bcb-win.open{transform:none;opacity:1;pointer-events:auto}'
       +'#bcb-header{background:'+C.color+';padding:14px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;overflow:hidden}'
       +'#bcb-header::after{content:"★";position:absolute;right:-8px;top:-18px;font-size:90px;color:rgba(255,255,255,.05);line-height:1;pointer-events:none}'
@@ -384,6 +412,8 @@ function getCfg() {
     position  : cfgState.position,
     offset_x  : parseInt(document.getElementById('cfg-ox').value)||24,
     offset_y  : parseInt(document.getElementById('cfg-oy').value)||24,
+    width     : parseInt(document.getElementById('cfg-w').value)||390,
+    height    : parseInt(document.getElementById('cfg-h').value)||620,
     logo      : document.getElementById('cfg-logo').value.trim(),
     pulse     : document.getElementById('cfg-pulse').checked,
   };
@@ -444,6 +474,18 @@ function setCustomColor(val) {
   onCfgChange();
 }
 
+function setSize(el) {
+  document.querySelectorAll('.size-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('cfg-w').value = el.dataset.w;
+  document.getElementById('cfg-h').value = el.dataset.h;
+  onCfgChange();
+}
+function onSizeInput() {
+  document.querySelectorAll('.size-btn').forEach(function(b){ b.classList.remove('active'); });
+  onCfgChange();
+}
+
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function updateCode() {
@@ -460,6 +502,8 @@ function updateCode() {
   if (c.position !== 'bottom-right') lines.push('    <span class="code-key">position</span>   : <span class="code-str">"'+c.position+'"</span>,');
   if (c.offset_x !== 24) lines.push('    <span class="code-key">offset_x</span>   : <span class="code-val">'+c.offset_x+'</span>,');
   if (c.offset_y !== 24) lines.push('    <span class="code-key">offset_y</span>   : <span class="code-val">'+c.offset_y+'</span>,');
+  if (c.width !== 390)  lines.push('    <span class="code-key">width</span>      : <span class="code-val">'+c.width+'</span>,');
+  if (c.height !== 620) lines.push('    <span class="code-key">height</span>     : <span class="code-val">'+c.height+'</span>,');
   if (!c.pulse) lines.push('    <span class="code-key">pulse</span>      : <span class="code-val">false</span>,');
   lines.push('  });');
   lines.push('<span class="code-tag">&lt;/script&gt;</span>');
@@ -478,6 +522,8 @@ function copyCode() {
   if (c.position !== 'bottom-right') code += '    position   : "'+c.position+'",\n';
   if (c.offset_x !== 24) code += '    offset_x   : '+c.offset_x+',\n';
   if (c.offset_y !== 24) code += '    offset_y   : '+c.offset_y+',\n';
+  if (c.width !== 390)  code += '    width      : '+c.width+',\n';
+  if (c.height !== 620) code += '    height     : '+c.height+',\n';
   if (!c.pulse) code += '    pulse      : false,\n';
   code += '  });\n<\/script>';
   navigator.clipboard.writeText(code).then(function(){
