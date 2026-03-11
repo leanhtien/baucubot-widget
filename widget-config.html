@@ -395,7 +395,7 @@ code { background:#f5f5f5; padding:1px 5px; border-radius:4px; font-size:11px; }
     win.appendChild(hdr);
     var iframe = document.createElement('iframe'); iframe.id = 'bcb-iframe'; iframe.title = C.title; iframe.setAttribute('allow','clipboard-write');
     win.appendChild(iframe); root.appendChild(win);
-    function openChat() { isOpen=true; win.classList.add('open'); btn.classList.add('open'); greet.style.display='none'; if(!iframe.src) iframe.src=C.webapp_url; }
+    function openChat() { isOpen=true; win.classList.add('open'); btn.classList.add('open'); greet.style.display='none'; if(!iframe.src) iframe.src=C.webapp_url + (C.hide_header ? '#hideHeader' : ''); }
     function closeChat() { isOpen=false; win.classList.remove('open'); btn.classList.remove('open'); }
     btn.addEventListener('click', function(){ isOpen ? closeChat() : openChat(); });
     document.getElementById('bcb-close-win').addEventListener('click', closeChat);
